@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp 帮助中心</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💬</text></svg>">
+    <style>
+        :root {
+            --whatsapp-green: #25D366;
+            --whatsapp-dark-green: #128C7E;
+            --light-gray: #f5f5f5;
+            --medium-gray: #e0e0e0;
+            --dark-gray: #333;
+            --text-color: #444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 头部样式 */
+        header {
+            background: linear-gradient(135deg, var(--whatsapp-dark-green), #075E54);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .logo i {
+            font-size: 2.4rem;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo h1 {
+            font-size: 1.7rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.92);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            padding: 6px 10px;
+            border-radius: 4px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .nav-links a i {
+            margin-right: 6px;
+        }
+
+        /* 搜索区域 */
+        .search-section {
+            background: linear-gradient(120deg, #128C7E, #25D366);
+            padding: 70px 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .search-section::before {
+            content: "";
+            position: absolute;
+            width: 150%;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.05);
+            top: -50px;
+            left: -25%;
+            transform: rotate(-3deg);
+        }
+
+        .search-section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 18px;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+        }
+
+        .search-section p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 35px;
+            opacity: 0.92;
+            position: relative;
+            z-index: 2;
+        }
+
+        .search-box {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 18px 25px;
+            border-radius: 60px;
+            border: none;
+            font-size: 1.15rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+            padding-right: 70px;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .search-box button {
+            position: absolute;
+            right: 8px;
+            top: 8px;
+            background: var(--whatsapp-dark-green);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-box button:hover {
+            background: #075E54;
+            transform: scale(1.05);
+        }
+
+        /* 分类区域 */
+        .categories-section {
+            padding: 80px 0 50px;
+            background-color: #f9f9f9;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 55px;
+            color: var(--dark-gray);
+        }
+
+        .section-title h2 {
+            font-size: 2.4rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            color: #075E54;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90px;
+            height: 5px;
+            background: var(--whatsapp-green);
+            border-radius: 3px;
+        }
+
+        .section-title p {
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin: 30px auto 0;
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            text-align: center;
+            padding: 40px 30px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .category-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--whatsapp-green);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .category-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .category-icon {
+            font-size: 3.8rem;
+            color: var(--whatsapp-green);
+            margin-bottom: 25px;
+            transition: transform 0.3s ease;
+        }
+
+        .category-card:hover .category-icon {
+            transform: scale(1.1);
+        }
+
+        .category-card h3 {
+            font-size: 1.65rem;
+            margin-bottom: 18px;
+            color: var(--dark-gray);
+        }
+
+        .category-card p {
+            margin-bottom: 25px;
+            color: var(--text-color);
+            font-size: 1.05rem;
+        }
+
+        .category-card a {
+            display: inline-block;
+            text-decoration: none;
+            color: var(--whatsapp-dark-green);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 8px 20px;
+            border-radius: 30px;
+            border: 2px solid var(--whatsapp-green);
+        }
+
+        .category-card a:hover {
+            background: var(--whatsapp-green);
+            color: white;
+            padding: 8px 25px;
+        }
+
+        /* 热门问题区域 */
+        .faq-section {
+            padding: 70px 0 90px;
+            background: linear-gradient(to bottom, #f0f9f7, #ffffff);
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 22px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.09);
+        }
+
+        .faq-question {
+            padding: 22px 30px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--dark-gray);
+            background: rgba(37, 211, 102, 0.03);
+        }
+
+        .faq-question:hover {
+            background: rgba(37, 211, 102, 0.07);
+        }
+
+        .faq-answer {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            color: var(--text-color);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 25px 30px;
+            max-height: 600px;
+        }
+
+        .faq-icon {
+            transition: transform 0.4s ease;
+            color: var(--whatsapp-dark-green);
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* 底部区域 */
+        footer {
+            background: linear-gradient(to bottom, #0a5c50, var(--dark-gray));
+            color: white;
+            padding: 60px 0 25px;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: linear-gradient(135deg, transparent 0%, #0a5c50 50%, transparent 100%);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 45px;
+            margin-bottom: 45px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.45rem;
+            margin-bottom: 28px;
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 45px;
+            height: 3px;
+            background: var(--whatsapp-green);
+            border-radius: 3px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 14px;
+        }
+
+        .footer-column ul li a {
+            color: #d1fae5;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 5px 0;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--whatsapp-green);
+            transform: translateX(5px);
+        }
+
+        .footer-column ul li a i {
+            width: 25px;
+            text-align: center;
+            margin-right: 8px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 0.95rem;
+        }
+
+        /* 搜索模态框 */
+        .search-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .search-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .search-modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-content h2 {
+            color: #128C7E;
+            margin-bottom: 20px;
+        }
+
+        .result-item {
+            background: #f0f9f7;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .result-item:hover {
+            transform: translateX(5px);
+            background: #e0f2e9;
+        }
+
+        .result-item h3 {
+            color: #075E54;
+            margin-bottom: 5px;
+        }
+
+        #closeModal {
+            background: #128C7E;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        #closeModal:hover {
+            background: #0a5c50;
+            transform: scale(1.05);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 900px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav-links {
+                gap: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .search-section h2 {
+                font-size: 2.2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .logo h1 {
+                font-size: 1.5rem;
+            }
+
+            .nav-links a {
+                font-size: 0.95rem;
+            }
+
+            .search-section {
+                padding: 50px 0;
+            }
+
+            .search-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .search-section p {
+                font-size: 1.05rem;
+            }
+
+            .category-card {
+                padding: 30px 20px;
+            }
+
+            .faq-question {
+                font-size: 1.15rem;
+                padding: 18px 20px;
+            }
+
+            .footer-content {
+                gap: 35px;
+            }
+        }
+
+        /* 动画效果 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .category-card {
+            animation: fadeIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        .category-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .category-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .category-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .category-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .category-card:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .category-card:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .category-card:hover {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.03);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .search-box:hover {
+            animation: pulse 1.5s infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 头部导航 -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fab fa-whatsapp"></i>
+                    <h1>WhatsApp 帮助中心</h1>
+                </div>
+                <div class="nav-links">
+                    <a href="#"><i class="fas fa-home"></i> 首页</a>
+                    <a href="#"><i class="fas fa-question-circle"></i> 常见问题</a>
+                    <a href="#"><i class="fas fa-mobile-alt"></i> 使用指南</a>
+                    <a href="#"><i class="fas fa-shield-alt"></i> 隐私安全</a>
+                    <a href="#"><i class="fas fa-headset"></i> 联系我们</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 搜索区域 -->
+    <section class="search-section">
+        <div class="container">
+            <h2>需要帮助？我们随时为您服务</h2>
+            <p>搜索常见问题解答、使用指南和疑难解决方案，快速解决您的问题</p>
+            <div class="search-box">
+                <input type="text" id="helpSearch" placeholder="输入您的问题或关键词...">
+                <button id="searchBtn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 分类区域 -->
+    <section class="categories-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>帮助分类</h2>
+                <p>浏览我们的帮助主题，快速找到您需要的解决方案。所有内容按主题分类，便于查找</p>
+            </div>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-user-cog"></i>
+                    </div>
+                    <h3>账户与设置</h3>
+                    <p>账户创建、验证、个人信息设置和账户管理</p>
+                    <a href="#">查看详情 <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-comment-dots"></i>
+                    </div>
+                    <h3>消息与通话</h3>
+                    <p>发送消息、语音通话、视频通话和通话设置</p>
+                    <a href="#">查看详情 <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>隐私与安全</h3>
+                    <p>隐私设置、两步验证、加密和安全功能</p>
+                    <a href="#">查看详情 <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>群组与联系人</h3>
+                    <p>创建群组、管理联系人、群组设置和群组通话</p>
+                    <a href="#">查看详情 <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3>备份与恢复</h3>
+                    <p>聊天备份、恢复聊天记录、迁移数据</p>
+                    <a href="#">查看详情 <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>问题排查</h3>
+                    <p>常见问题解决、连接问题、通知问题</p>
+                    <a href="#">查看详情 <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 热门问题区域 -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>热门问题解答</h2>
+                <p>以下是用户最常咨询的问题和解决方案，点击问题查看详细解答</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        如何备份我的聊天记录？
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>要备份聊天记录：<br>
+                            1. 打开 WhatsApp > 点击右下角更多选项<br>
+                            2. 进入设置 > 聊天 > 聊天备份<br>
+                            3. 点击"立即备份"即可开始备份到Google Drive或iCloud<br>
+                            您还可以设置自动备份频率：每天、每周或每月</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        如何启用两步验证？
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>启用两步验证的步骤：<br>
+                            1. 打开 WhatsApp > 点击右下角更多选项<br>
+                            2. 进入设置 > 账户 > 两步验证<br>
+                            3. 点击"启用"<br>
+                            4. 设定6位PIN码并确认<br>
+                            5. 提供备用电子邮件地址（可选）<br>
+                            建议启用两步验证以增强账户安全性</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        如何创建群组？
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>创建群组的方法：<br>
+                            1. 打开 WhatsApp > 点击右上角新建图标<br>
+                            2. 选择"新建群组"<br>
+                            3. 选择至少一名联系人，然后点击下一步<br>
+                            4. 输入群组名称（最多25个字符）<br>
+                            5. 点击创建<br>
+                            新群组最多可添加256名成员，您可以随时添加或移除成员。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        为什么我收不到验证码？
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>收不到验证码可能的原因：<br>
+                            • 手机号码输入错误<br>
+                            • 网络连接问题<br>
+                            • 短信被拦截或过滤<br>
+                            • 请求次数过多<br><br>
+                            解决方案：<br>
+                            1. 确保输入了正确的手机号码和国家代码<br>
+                            2. 检查手机信号或切换到Wi-Fi<br>
+                            3. 检查短信垃圾箱或拦截列表<br>
+                            4. 等待24小时后再试或尝试语音验证码选项</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        如何屏蔽联系人？
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>屏蔽联系人的步骤：<br>
+                            1. 打开与要屏蔽联系人的聊天<br>
+                            2. 点击顶部联系人姓名<br>
+                            3. 向下滚动并选择"屏蔽联系人"<br>
+                            4. 确认屏蔽<br><br>
+                            屏蔽后，该联系人将无法给您发送消息、打电话或查看您的"最后上线"状态。您可以在设置 > 账户 > 隐私 > 已屏蔽的联系人中管理屏蔽列表。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部区域 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>帮助中心</h3>
+                    <ul>
+                        <li><a href="#" data-link="faq"><i class="fas fa-question"></i> 常见问题</a></li>
+                        <li><a href="#" data-link="guide"><i class="fas fa-book"></i> 使用指南</a></li>
+                        <li><a href="#" data-link="video"><i class="fas fa-video"></i> 视频教程</a></li>
+                        <li><a href="#" data-link="status"><i class="fas fa-chart-bar"></i> 系统状态</a></li>
+                        <li><a href="#" data-link="contact"><i class="fas fa-envelope"></i> 联系我们</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>产品功能</h3>
+                    <ul>
+                        <li><a href="#" data-link="web"><i class="fas fa-laptop"></i> WhatsApp 网页版</a></li>
+                        <li><a href="#" data-link="desktop"><i class="fas fa-desktop"></i> 桌面版</a></li>
+                        <li><a href="#" data-link="story"><i class="fas fa-history"></i> 状态功能</a></li>
+                        <li><a href="#" data-link="business"><i class="fas fa-briefcase"></i> 企业版</a></li>
+                        <li><a href="#" data-link="payment"><i class="fas fa-wallet"></i> 支付功能</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>隐私政策</h3>
+                    <ul>
+                        <li><a href="#" data-link="privacy"><i class="fas fa-shield-alt"></i> 隐私中心</a></li>
+                        <li><a href="#" data-link="security"><i class="fas fa-lock"></i> 安全建议</a></li>
+                        <li><a href="#" data-link="encryption"><i class="fas fa-key"></i> 端到端加密</a></li>
+                        <li><a href="#" data-link="gdpr"><i class="fas fa-file-contract"></i> GDPR</a></li>
+                        <li><a href="#" data-link="report"><i class="fas fa-flag"></i> 报告问题</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>关注我们</h3>
+                    <ul>
+                        <li><a href="#" data-link="twitter"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#" data-link="facebook"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#" data-link="instagram"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="#" data-link="youtube"><i class="fab fa-youtube"></i> YouTube</a></li>
+                        <li><a href="#" data-link="linkedin"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 WhatsApp LLC. 保留所有权利。WhatsApp 是 WhatsApp LLC 的商标。</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 搜索模态框 -->
+    <div class="search-modal" id="searchModal">
+        <div class="modal-content">
+            <h2>搜索结果</h2>
+            <p>搜索关键词: <strong id="searchTerm"></strong></p>
+            <div id="searchResults">
+                <div class="result-item">
+                    <h3>如何备份聊天记录</h3>
+                    <p>学习如何将WhatsApp聊天备份到Google Drive或iCloud...</p>
+                </div>
+                <div class="result-item">
+                    <h3>验证码问题排查</h3>
+                    <p>解决收不到验证码的疑难问题指南...</p>
+                </div>
+                <div class="result-item">
+                    <h3>管理隐私设置</h3>
+                    <p>配置隐私偏好的分步指南...</p>
+                </div>
+            </div>
+            <button id="closeModal">关闭</button>
+        </div>
+    </div>
+
+    <script>
+        // FAQ展开/收起功能
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+
+        // 搜索功能
+        const searchButton = document.getElementById('searchBtn');
+        const searchModal = document.getElementById('searchModal');
+        const closeModal = document.getElementById('closeModal');
+        const searchTermElement = document.getElementById('searchTerm');
+
+        searchButton.addEventListener('click', () => {
+            const searchInput = document.getElementById('helpSearch');
+            const searchTerm = searchInput.value.trim();
+            if (searchTerm) {
+                searchTermElement.textContent = searchTerm;
+                searchModal.classList.add('active');
+            }
+        });
+
+        // 允许按Enter键搜索
+        const searchInput = document.getElementById('helpSearch');
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                searchButton.click();
+            }
+        });
+
+        // 关闭模态框
+        closeModal.addEventListener('click', () => {
+            searchModal.classList.remove('active');
+        });
+
+        // 点击模态框外部关闭
+        searchModal.addEventListener('click', (e) => {
+            if (e.target === searchModal) {
+                searchModal.classList.remove('active');
+            }
+        });
+
+        // 结果项点击事件
+        document.querySelectorAll('.result-item').forEach(item => {
+            item.addEventListener('click', () => {
+                alert('已选择此帮助主题！在实际应用中，这里将跳转到具体帮助页面。');
+            });
+        });
+
+        // 动态链接处理
+        function initDynamicLinks() {
+            const savedLinks = JSON.parse(localStorage.getItem('footerLinks') || '{}');
+
+            // 为所有带有data-link属性的链接添加点击事件
+            document.querySelectorAll('a[data-link]').forEach(link => {
+                const linkKey = link.getAttribute('data-link');
+
+                // 移除之前的事件监听器，重新克隆元素
+                const newLink = link.cloneNode(true);
+                link.parentNode.replaceChild(newLink, link);
+
+                // 添加点击事件处理
+                newLink.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    // 检查是否有配置的链接
+                    if (savedLinks[linkKey] && savedLinks[linkKey] !== '#') {
+                        // 有配置的链接，在新窗口打开
+                        console.log('尝试打开链接:', savedLinks[linkKey]);
+                        try {
+                            const opened = window.open(savedLinks[linkKey], '_blank', 'noopener,noreferrer');
+                            if (!opened || opened.closed || typeof opened.closed == 'undefined') {
+                                // 弹窗被阻止，尝试直接跳转
+                                console.log('弹窗被阻止，尝试直接跳转');
+                                window.location.href = savedLinks[linkKey];
+                            }
+                        } catch (error) {
+                            console.error('打开链接失败:', error);
+                            // 如果所有方法都失败，显示链接让用户手动复制
+                            showLinkFallback(savedLinks[linkKey]);
+                        }
+                    } else {
+                        // 没有配置链接，显示提示
+                        showLinkNotConfiguredAlert(newLink.textContent.trim());
+                    }
+                });
+
+                // 更新链接样式，如果已配置则显示不同的样式
+                if (savedLinks[linkKey] && savedLinks[linkKey] !== '#') {
+                    newLink.style.color = '#25D366';
+                    newLink.title = `跳转到: ${savedLinks[linkKey]}`;
+                } else {
+                    newLink.style.color = '#d1fae5';
+                    newLink.title = '链接未配置';
+                }
+            });
+        }
+
+        // 显示链接回退选项
+        function showLinkFallback(url) {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                z-index: 10000;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            `;
+
+            const content = document.createElement('div');
+            content.style.cssText = `
+                background: white;
+                padding: 30px;
+                border-radius: 12px;
+                text-align: center;
+                max-width: 500px;
+                width: 90%;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            `;
+
+            content.innerHTML = `
+                <div style="color: #128C7E; font-size: 3rem; margin-bottom: 20px;">
+                    <i class="fas fa-external-link-alt"></i>
+                </div>
+                <h3 style="color: #333; margin-bottom: 15px;">无法自动跳转</h3>
+                <p style="color: #666; margin-bottom: 20px; line-height: 1.6;">
+                    由于浏览器安全限制，无法自动打开外部链接。<br>
+                    请手动访问以下链接：
+                </p>
+                <div style="background: #f5f5f5; padding: 15px; border-radius: 8px; margin: 20px 0; word-break: break-all; font-family: monospace;">
+                    ${url}
+                </div>
+                <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                    <button onclick="navigator.clipboard.writeText('${url}').then(() => alert('链接已复制到剪贴板')); this.closest('.temp-modal').remove()" 
+                            style="background: #25D366; color: white; border: none; padding: 12px 20px; 
+                                   border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: 500;">
+                        复制链接
+                    </button>
+                    <button onclick="window.location.href='${url}'" 
+                            style="background: #128C7E; color: white; border: none; padding: 12px 20px; 
+                                   border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: 500;">
+                        直接跳转
+                    </button>
+                    <button onclick="this.closest('.temp-modal').remove()" 
+                            style="background: #ccc; color: #333; border: none; padding: 12px 20px; 
+                                   border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: 500;">
+                        关闭
+                    </button>
+                </div>
+            `;
+
+            modal.className = 'temp-modal';
+            modal.appendChild(content);
+            document.body.appendChild(modal);
+
+            // 点击外部关闭
+            modal.addEventListener('click', function (e) {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+        }
+
+        // 显示链接未配置的提示
+        function showLinkNotConfiguredAlert(linkText) {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                z-index: 10000;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            `;
+
+            const content = document.createElement('div');
+            content.style.cssText = `
+                background: white;
+                padding: 30px;
+                border-radius: 12px;
+                text-align: center;
+                max-width: 400px;
+                width: 90%;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            `;
+
+            content.innerHTML = `
+                <div style="color: #128C7E; font-size: 3rem; margin-bottom: 20px;">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <h3 style="color: #333; margin-bottom: 15px;">链接未配置</h3>
+                <p style="color: #666; margin-bottom: 25px; line-height: 1.6;">
+                    "${linkText}" 的跳转链接尚未配置。<br>
+                    请联系管理员进行配置。
+                </p>
+                <button onclick="this.closest('.temp-modal').remove()" 
+                        style="background: #25D366; color: white; border: none; padding: 12px 30px; 
+                               border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: 500;">
+                    我知道了
+                </button>
+            `;
+
+            modal.className = 'temp-modal';
+            modal.appendChild(content);
+            document.body.appendChild(modal);
+
+            // 点击外部关闭
+            modal.addEventListener('click', function (e) {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+        }
+
+        // 页面加载完成后初始化动态链接
+        document.addEventListener('DOMContentLoaded', function () {
+            initDynamicLinks();
+        });
+
+        // 监听localStorage变化，实时更新链接（用于后台管理更新后立即生效）
+        window.addEventListener('storage', function (e) {
+            if (e.key === 'footerLinks') {
+                initDynamicLinks();
+            }
+        });
+    </script>
+    <script>window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}</script><script id="zsiqscript" src="https://salesiq.zohopublic.com/widget?wc=siqb65fbee6ac71ec4dd79161405cd3c7bfc6e19e0eee029e280ffa5eb9c935eb72" defer></script>
+</body>
+
+</html>
